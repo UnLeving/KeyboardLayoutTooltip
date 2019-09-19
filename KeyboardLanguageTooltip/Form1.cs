@@ -32,7 +32,7 @@ namespace KeyboardLanguageTooltip
             
         }
 
-        [STAThread]
+
         public static void Main(string[] args)
         {
             Application.Run(new Form1());
@@ -75,7 +75,10 @@ namespace KeyboardLanguageTooltip
 
         private bool GetControl(System.Windows.Point point)
         {
-            AutomationElement el = AutomationElement.FromPoint(point);
+            AutomationElement el = null;
+            Task.Run(()=> {
+                el = AutomationElement.FromPoint(point);
+            }).Wait();
 
             if (el.Current.ControlType.Id == document || el.Current.ControlType.Id == pane || el.Current.ControlType.Id == edit)
                 return true;
