@@ -20,6 +20,7 @@ namespace KeyboardLanguageTooltip
         readonly int document = 50030;
         readonly int pane = 50033;
         readonly int edit = 50004;
+        readonly int custom = 50025;
 
         public Form1()
         {
@@ -80,7 +81,7 @@ namespace KeyboardLanguageTooltip
                 el = AutomationElement.FromPoint(point);
             }).Wait();
 
-            if (el.Current.ControlType.Id == document || el.Current.ControlType.Id == pane || el.Current.ControlType.Id == edit)
+            if (el.Current.ControlType.Id == document || el.Current.ControlType.Id == pane || el.Current.ControlType.Id == edit || el.Current.ControlType.Id == custom)
                 return true;
             else
                 return false;
